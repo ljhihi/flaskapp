@@ -1,4 +1,5 @@
 from app import db
+
 from datetime import datetime
 
 # 会员
@@ -169,6 +170,15 @@ class Oplog(db.Model):
     def __repr__(self):
         return "<Oplog %r>" % self.id
 
+#邀请码
+class Yqm(db.Model):
+    __tablename__ = "yqm"
+    id = db.Column(db.Integer,primary_key=True)
+    data = db.Column(db.String(100))
+
+    def __repr__(self):
+        return "<Yqm %r>" % self.id
+
 # if __name__ == "__main__":
 #     # db.create_all()
 #     from werkzeug.security import generate_password_hash
@@ -180,3 +190,29 @@ class Oplog(db.Model):
 #     )
 #     db.session.add(admin)
 #     db.session.commit()
+
+# if __name__ == "__main__":
+#     yqm = Yqm(data="wtmxb")
+#     db.session.add(yqm)
+#     db.session.commit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
