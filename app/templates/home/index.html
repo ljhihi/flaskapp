@@ -19,7 +19,7 @@
             <div class="col-md-12 table-responsive">
                 <table class="table text-left table-bordered" id="movietags">
                     <tr>
-                        <td style="width:10%;">电影标签</td>
+                        <td style="width:10%;">资源标签</td>
                         <td style="width:90%;">
                             {% for v in tags %}
                             <a href="{{url_for('home.index',page=1)}}?tid={{v.id}}&star={{p['star']}}&time={{p['time']}}&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-info"><span class="glyphicon glyphicon-tag"></span>&nbsp;{{v.name}}</a>
@@ -27,24 +27,17 @@
                             {% endfor %}
                     </tr>
                     <tr>
-                        <td>电影星级</td>
+                        <td>资源分类 </td>
                         <td>
-                            {% for v in range(1,6) %}
-                            <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{v}}&time={{p['time']}}&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-warning"><span class="glyphicon glyphicon-star"></span>&nbsp;{{v}}星</a>
+                            <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{p['star']}}&time=1&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-default"><span class="glyphicon glyphicon-book"></span>&nbsp;文档</span></a>
                             &nbsp;
-                            {% endfor %}
+                            <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{p['star']}}&time=2&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-default"><span class="glyphicon glyphicon-film"></span>&nbsp;视频</span></a>
+                            &nbsp;
+                            <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{p['star']}}&time=3&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-default"><span class="glyphicon glyphicon-wrench"></span>&nbsp;其他</span></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>上映时间</td>
-                        <td>
-                            <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{p['star']}}&time=1&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-default"><span class="glyphicon glyphicon-time"></span>&nbsp;最近</span></a>
-                            &nbsp;
-                            <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{p['star']}}&time=2&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-default"><span class="glyphicon glyphicon-time" class="label label-default"><span class="glyphicon glyphicon-time"></span>&nbsp;更早</span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>播放数量</td>
+                        <td>浏览数量</td>
                         <td>
                             <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{p['star']}}&time={{p['time']}}&pm=1&cm={{p['cm']}}" class="label label-success"><span class="glyphicon glyphicon-arrow-down"></span>&nbsp;从高到底</span></a>
                             &nbsp;
@@ -59,6 +52,15 @@
                             <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{p['star']}}&time={{p['time']}}&pm={{p['pm']}}&cm=2" class="label label-danger"><span class="glyphicon glyphicon-arrow-up"></span>&nbsp;从低到高</span></a>
                         </td>
                     </tr>
+                     <tr>
+                        <td>推荐星级</td>
+                        <td>
+                            {% for v in range(5,0,-1) %}
+                            <a href="{{url_for('home.index',page=1)}}?tid={{p['tid']}}&star={{v}}&time={{p['time']}}&pm={{p['pm']}}&cm={{p['cm']}}" class="label label-warning"><span class="glyphicon glyphicon-star"></span>&nbsp;{{v}}星</a>
+                            &nbsp;
+                            {% endfor %}
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -67,8 +69,8 @@
                 <div class="movielist text-center">
                     <!--<img data-original="holder.js/262x166"
                              class="img-responsive lazy center-block" alt="">-->
-                    <img src="{{url_for('static',filename='uploads/'+v.logo)}}" class="img-responsive center-block" alt="">
-                    <div class="text-left" style="margin-left:auto;margin-right:auto;width:210px;">
+                    <a href="{{url_for('home.play',id=v.id,page=1)}}"><img style="height:258px" src="{{ url_for('static',filename='uploads/'+v.logo)}}" class="img-responsive center-block" alt=""></a>
+                    <div class="text-left" style="margin-left:auto;margin-right:auto;width:210px;heigth:60px;">
                         <span style="color:#999;font-style: italic;">{{v.title}}</span><br>
                         <div>
                             {% for val in range(1,v.star+1) %}
@@ -79,7 +81,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <a href="{{url_for('home.play',id=v.id)}}" class="btn btn-primary" target="_blank" role="button"><span class="glyphicon glyphicon-play"></span>&nbsp;播放</a>
+                    <a href="{{url_for('home.play',id=v.id,page=1)}}" class="btn btn-primary" target="_blank" role="button"><span class="glyphicon glyphicon-book"></span>&nbsp;详情下载</a>
                 </div>
             </div>
             {% endfor %}

@@ -23,6 +23,17 @@
                         </div>
                         {% endfor %}
                         <div class="form-group">
+                            <label for="input_name"><span class="glyphicon glyphicon-user"></span>&nbsp;{{ form.yqm.label }}</label>
+                            <img style="height:82px; width: 82px;" src="{{ url_for('static',filename='anim/main_banner/pay.jpg')}}" alt="">
+                            扫码留言获取，要留言哦！
+                            {{ form.yqm }}
+                        </div>
+                        {% for err in form.yqm.errors %}
+                        <div class="col-md-12">
+                            {{err}}
+                        </div>
+                        {% endfor %}
+                        <div class="form-group">
                             <label for="input_email"><span class="glyphicon glyphicon-envelope"></span>&nbsp;{{form.email.label}}</label>
                             {{form.email}}
                         </div>

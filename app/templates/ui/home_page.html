@@ -10,13 +10,13 @@
     <li><a class="disabled" href="#">上一页 </a></li>
     {% endif %}
 
-    {% for v in data.iter_pages() %}
-        {% if v== data.pages %}
-        <li><a class="active" href="#">{{v}}</a></li>
-        {% else %}
-        <li><a class="active" href="{{ url_for(url,page=v) }}">{{v}}</a></li>
-        {% endif %}
-    {% endfor %}
+    <!--{% for v in data.iter_pages() %}-->
+    <!--    {% if v== data.pages %}-->
+    <!--    <li><a class="active" href="{{ url_for(url,page=data.pages) }}">{{v}}</a></li>-->
+    <!--    {% else %}-->
+    <!--    <li><a class="active" href="{{ url_for(url,page=v) }}">{{v}}</a></li>-->
+    <!--    {% endif %}-->
+    <!--{% endfor %}-->
 
     {% if data.has_next %}
     <li><a href="{{ url_for(url,page=data.next_num) }} ">下一页</a></li>

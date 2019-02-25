@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import SubmitField,StringField,PasswordField,FileField,TextAreaField
 from wtforms.validators import DataRequired,EqualTo,ValidationError
-from app.models import User
+from app.models import User,Yqm
 
 class RegistForm(FlaskForm):
     name = StringField(
@@ -14,6 +14,17 @@ class RegistForm(FlaskForm):
         render_kw={
             'class':"form-control input-lg" ,
             'placeholder':"请输入名称!",
+        }
+    )
+    yqm = StringField(
+        label="邀请码",
+        validators=[
+            DataRequired('请输入邀请码!')
+        ],
+        description='邀请码',
+        render_kw={
+            'class':"form-control input-lg" ,
+            'placeholder':"请输入邀请码!",
         }
     )
     email = StringField(
@@ -69,6 +80,7 @@ class RegistForm(FlaskForm):
             'class':'btn btn-lg btn-success btn-block'
         }
     )
+
 
     def validate_name(self,field):
         name = field.data
@@ -192,6 +204,24 @@ class PwdForm(FlaskForm):
         }
     )
 
+class CommentForm(FlaskForm):
+    content = TextAreaField(
+        label = "内容",
+        validators=[
+            DataRequired("请输入内容"),
+            ],
+        description="内容",
+        render_kw={
+            "id":"input_content"
+            }
+        )
+
+    submit = SubmitField(
+        '提交评论',
+        render_kw={
+            "class":"btn btn-success", "id":"btn-sub"
+        }
+    )
 
 
 
